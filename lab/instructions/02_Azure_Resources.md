@@ -18,18 +18,28 @@
 
 ## Architecture of Azure Resources
 
-```
-Resource Group: compliance-agent-rg
-├── AI Foundry Hub: Compliance-Sentinel
-│   ├── Model: gpt-4o (reasoning)
-│   └── Model: compliance-embedding (text-embedding-ada-002)
-├── Storage Account: compliancekb
-│   └── Blob Container: kb-documents
-│       ├── RBI_Data_Localization_2018_Guidelines.md
-│       ├── GDPR_Article_44_Transfers.md
-│       └── ... (12 documents total)
-└── Azure AI Search: compliancesearch (Free tier)
-    └── Index: knowledgesource-*-index (81 document chunks)
+```mermaid
+graph TD
+    RG["🗂️ Resource Group\ncompliance-agent-rg"]
+
+    subgraph AIF["🏢 AI Foundry Hub: Compliance-Sentinel"]
+        GPT["🧠 gpt-4o\nReasoning Model"]
+        EMB["🔢 compliance-embedding\ntext-embedding-ada-002"]
+    end
+
+    subgraph STO["💾 Storage Account: compliancekb"]
+        BC["📁 Blob Container: kb-documents"]
+        DOCS["📄 12 Compliance\nMarkdown Files"]
+        BC --> DOCS
+    end
+
+    subgraph AIS["🔍 Azure AI Search: compliancesearch (Free)"]
+        IDX["📇 Index: knowledgesource-index\n81 document chunks"]
+    end
+
+    RG --> AIF
+    RG --> STO
+    RG --> AIS
 ```
 
 ---

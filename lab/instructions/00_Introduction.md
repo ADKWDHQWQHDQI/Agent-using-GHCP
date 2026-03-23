@@ -21,32 +21,19 @@ By the end of this workshop, you will be able to:
 
 ## Architecture Overview
 
+```mermaid
+flowchart LR
+    U["👤 User Query"] -->|"1. Submit"| UI["🌐 Streamlit Web UI\napp_ui.py"]
+    UI -->|"2. Query"| A["🤖 Azure AI Foundry\nAgent (GPT-4o)"]
+    A -->|"3. Search"| S["🔍 Azure AI Search\nRAG Retrieval"]
+    S -->|"4. Retrieve"| B["📦 Blob Storage\nKB Documents"]
+    B -.->|"5. Chunks"| S
+    S -.->|"6. Context"| A
+    A -.->|"7. Report"| UI
+    UI -.->|"8. Display"| U
 ```
-┌────────────────────────────────────────────────────────────────────┐
-│                        Compliance Compass                          │
-├────────────────────────────────────────────────────────────────────┤
-│                                                                    │
-│   ┌──────────┐    ┌──────────────┐    ┌─────────────────────┐     │
-│   │  User     │───▶│  Streamlit   │───▶│  Azure AI Foundry   │     │
-│   │  Query    │    │  Web UI      │    │  Agent (gpt-4o)     │     │
-│   └──────────┘    └──────────────┘    └─────────┬───────────┘     │
-│                                                  │                 │
-│                                         ┌────────▼────────┐       │
-│                                         │  Azure AI Search │       │
-│                                         │  (RAG Retrieval) │       │
-│                                         └────────┬────────┘       │
-│                                                  │                 │
-│                                         ┌────────▼────────┐       │
-│                                         │  Blob Storage    │       │
-│                                         │  (KB Documents)  │       │
-│                                         └─────────────────┘       │
-│                                                                    │
-│   Azure = Brain (Models + Search)                                  │
-│   AI Toolkit = Agent Designer                                      │
-│   GitHub Copilot = Builder + Debugger + Extender                   │
-│                                                                    │
-└────────────────────────────────────────────────────────────────────┘
-```
+
+> **Azure** = Brain (Models + Search) · **AI Toolkit** = Agent Designer · **GitHub Copilot** = Builder + Debugger + Extender
 
 ---
 

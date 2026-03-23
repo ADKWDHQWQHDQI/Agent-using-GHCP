@@ -81,7 +81,30 @@
 
 ## Step 2: Review the Generated UI Code
 
-The generated `app_ui.py` should contain the following key sections:
+The generated `app_ui.py` should contain the following key sections. The sequence diagram below shows the runtime data flow:
+
+```mermaid
+sequenceDiagram
+    actor U as User
+    participant UI as Streamlit (app_ui.py)
+    participant SS as st.session_state
+    participant A as AI Foundry Agent
+    participant R as Azure AI Search
+
+    U->>UI: Open http://localhost:8501
+    UI->>SS: Initialize agent + thread (once)
+
+    loop Each compliance query
+        U->>UI: Submit query
+        UI->>SS: Append user message
+        UI->>A: messages.create(thread_id, content)
+        A->>R: RAG retrieval
+        R-->>A: Relevant policy chunks
+        A-->>UI: Compliance report (Markdown)
+        UI->>SS: Append message + timestamp
+        UI-->>U: st.markdown(response)
+    end
+```
 
 ### Page Configuration
 
