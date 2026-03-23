@@ -1,4 +1,4 @@
-# Module VII — Containerization and Testing *(Optional)*
+﻿# Module VII — Containerization and Testing *(Optional)*
 
 > [!NOTE]
 > **Duration:** ~15 minutes
@@ -315,7 +315,7 @@ If certain test scenarios produce unsatisfactory results:
 
 ---
 
-## Workshop Complete! 🎉
+## Workshop Complete! 
 
 Congratulations! You have successfully built the **Compliance Compass** agent from scratch:
 
@@ -396,4 +396,4 @@ docker rmi compliance-compass:latest
 
 ---
 
-Thank you for completing the **Compliance Compass Workshop**! 🛡️
+Thank you for completing the **Compliance Compass Workshop**! 

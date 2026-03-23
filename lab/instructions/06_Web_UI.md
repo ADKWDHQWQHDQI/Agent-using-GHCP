@@ -1,4 +1,4 @@
-# Module VI — Building a Professional Web UI
+﻿# Module VI — Building a Professional Web UI
 
 > [!NOTE]
 > **Duration:** ~15 minutes
@@ -40,8 +40,8 @@
    and query-sending logic and adapt it for Streamlit session state.
 
    # UI Requirements
-   1. PAGE — st.set_page_config: title "Compliance Compass", icon "🛡️", wide layout
-   2. HEADER — "🛡️ Compliance Compass" + subtitle "Regulatory Risk Assessment & Policy Analysis"
+   1. PAGE — st.set_page_config: title "Compliance Compass", icon "", wide layout
+   2. HEADER — " Compliance Compass" + subtitle "Regulatory Risk Assessment & Policy Analysis"
    3. SIDEBAR:
       - About section (2-sentence description)
       - Sample Queries (4 buttons, clicking sends that query directly):
@@ -114,7 +114,7 @@ from datetime import datetime
 
 st.set_page_config(
     page_title="Compliance Compass",
-    page_icon="🛡️",
+    page_icon="",
     layout="wide"
 )
 ```
@@ -123,17 +123,17 @@ st.set_page_config(
 
 ```python
 with st.sidebar:
-    st.image("🛡️", width=50)  # or a logo
+    st.image("", width=50)  # or a logo
     st.title("Compliance Compass")
     st.markdown("---")
     
-    st.subheader("📋 About")
+    st.subheader(" About")
     st.markdown("""
     Compliance Compass is a RAG-powered compliance agent that helps 
     risk teams evaluate regulatory requirements across jurisdictions.
     """)
     
-    st.subheader("💡 Sample Queries")
+    st.subheader(" Sample Queries")
     sample_queries = [
         "Assess vendor risk for an AI company in Singapore processing payment data",
         "GDPR compliance requirements for transferring data to China",
@@ -145,14 +145,14 @@ with st.sidebar:
             st.session_state.pending_query = query
     
     st.markdown("---")
-    st.subheader("📊 Session Info")
+    st.subheader(" Session Info")
     st.metric("Queries This Session", st.session_state.get("query_count", 0))
 ```
 
 ### Chat Interface
 
 ```python
-st.title("🛡️ Compliance Compass")
+st.title(" Compliance Compass")
 st.caption("Regulatory Risk Assessment & Policy Analysis")
 
 # Display chat history
@@ -160,7 +160,7 @@ for message in st.session_state.get("messages", []):
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
         if "timestamp" in message:
-            st.caption(f"🕐 {message['timestamp']}")
+            st.caption(f" {message['timestamp']}")
 
 # User input
 if prompt := st.chat_input("Describe your compliance scenario..."):
@@ -203,7 +203,7 @@ if prompt := st.chat_input("Describe your compliance scenario..."):
 
 4. Open the URL in your browser (`http://localhost:8501`).
 
-   > You should see the Compliance Compass web application with a sidebar (About, Sample Queries, Session Info) and a main chat area with the header "🛡️ Compliance Compass".
+   > You should see the Compliance Compass web application with a sidebar (About, Sample Queries, Session Info) and a main chat area with the header " Compliance Compass".
 
 ---
 

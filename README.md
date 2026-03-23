@@ -1,4 +1,4 @@
-# Compliance Compass — Build AI Agents with Microsoft Foundry, AI Toolkit & GitHub Copilot
+﻿# Compliance Compass — Build AI Agents with Microsoft Foundry, AI Toolkit & GitHub Copilot
 
 > **Audience:** Developers, Compliance Engineers, Tech Leads, Architects
 > **Duration:** ~90 minutes (7 modules)
@@ -46,10 +46,10 @@ GitHub Copilot = Builder + Debugger + Extender
 ```mermaid
 flowchart LR
     subgraph F1["Phase 1: Foundation"]
-        I["🔧 Module I\nPrerequisites"] --> II["☁️ Module II\nAzure Resources"] --> III["🤖 Module III\nAgent Design"] --> IV["🐛 Module IV\nExport & Debug"]
+        I[" Module I\nPrerequisites"] --> II[" Module II\nAzure Resources"] --> III[" Module III\nAgent Design"] --> IV[" Module IV\nExport & Debug"]
     end
     subgraph F2["Phase 2: Extend & Deploy"]
-        V["⌨️ Module V\nInteractive Input"] --> VI["🌐 Module VI\nWeb UI"] --> VII["🐳 Module VII\nDocker & Testing\n(Optional)"]
+        V[" Module V\nInteractive Input"] --> VI[" Module VI\nWeb UI"] --> VII[" Module VII\nDocker & Testing\n(Optional)"]
     end
     IV --> V
     style VII fill:#f5f5f5,stroke:#aaaaaa
@@ -88,10 +88,10 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    U["👤 User Query"] -->|submit| UI["🌐 Streamlit Web UI"]
-    UI -->|query| A["🤖 Azure AI Foundry\nAgent (GPT-4o)"]
-    A -->|search| S["🔍 Azure AI Search\nRAG Retrieval"]
-    S -->|retrieve| B["📦 Blob Storage\n12 KB Docs"]
+    U[" User Query"] -->|submit| UI[" Streamlit Web UI"]
+    UI -->|query| A[" Azure AI Foundry\nAgent (GPT-4o)"]
+    A -->|search| S[" Azure AI Search\nRAG Retrieval"]
+    S -->|retrieve| B[" Blob Storage\n12 KB Docs"]
     B -.->|chunks| S
     S -.->|context| A
     A -.->|report| UI

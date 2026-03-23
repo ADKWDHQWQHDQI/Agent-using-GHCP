@@ -1,4 +1,4 @@
-# Introduction
+﻿# Introduction
 
 > [!NOTE]
 > This is a **90-minute** workshop that gives you hands-on experience building a **Compliance RAG Agent** using **Microsoft AI Foundry**, the **AI Toolkit (AITK)** for VS Code, and **GitHub Copilot**. You will go from zero to a fully deployed compliance assistant with a web UI.
@@ -23,10 +23,10 @@ By the end of this workshop, you will be able to:
 
 ```mermaid
 flowchart LR
-    U["👤 User Query"] -->|"1. Submit"| UI["🌐 Streamlit Web UI\napp_ui.py"]
-    UI -->|"2. Query"| A["🤖 Azure AI Foundry\nAgent (GPT-4o)"]
-    A -->|"3. Search"| S["🔍 Azure AI Search\nRAG Retrieval"]
-    S -->|"4. Retrieve"| B["📦 Blob Storage\nKB Documents"]
+    U[" User Query"] -->|"1. Submit"| UI[" Streamlit Web UI\napp_ui.py"]
+    UI -->|"2. Query"| A[" Azure AI Foundry\nAgent (GPT-4o)"]
+    A -->|"3. Search"| S[" Azure AI Search\nRAG Retrieval"]
+    S -->|"4. Retrieve"| B[" Blob Storage\nKB Documents"]
     B -.->|"5. Chunks"| S
     S -.->|"6. Context"| A
     A -.->|"7. Report"| UI

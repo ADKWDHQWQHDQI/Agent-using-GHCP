@@ -1,4 +1,4 @@
-# Module V — Adding Interactive Input
+﻿# Module V — Adding Interactive Input
 
 > [!NOTE]
 > **Duration:** ~10 minutes
@@ -42,7 +42,7 @@ This module upgrades `run_agent.py` itself. No new file is created — the same 
 
    1. WELCOME BANNER — Print this banner at startup before the loop:
       ╔══════════════════════════════════════════════════╗
-      ║      🛡️  Compliance Compass Agent  🛡️            ║
+      ║        Compliance Compass Agent              ║
       ║   Regulatory Risk Assessment & Policy Analysis   ║
       ╠══════════════════════════════════════════════════╣
       ║  Describe your compliance scenario to begin.     ║
@@ -51,7 +51,7 @@ This module upgrades `run_agent.py` itself. No new file is created — the same 
 
    2. INTERACTIVE LOOP — After creating the agent and thread, enter 
       a loop that:
-      - Prompts: "🔍 Compliance Query > "
+      - Prompts: " Compliance Query > "
       - Reads user input from stdin
       - Skips empty inputs silently (user just pressed Enter)
       - Sends the input to the agent on the existing thread
@@ -65,7 +65,7 @@ This module upgrades `run_agent.py` itself. No new file is created — the same 
    4. EXIT HANDLING — End the loop cleanly when:
       - User types "exit", "quit", or "bye" → print farewell message
       - User presses Ctrl+C → print farewell message
-      Farewell: "Thank you for using Compliance Compass. Stay compliant! 👋"
+      Farewell: "Thank you for using Compliance Compass. Stay compliant! "
 
    5. Keep all existing logic unchanged: agent creation, Azure AI Search 
       tool configuration, DefaultAzureCredential, and any gzip/decompression 
@@ -93,7 +93,7 @@ run_agent.py
 ├── Thread creation (unchanged)
 ├── print_banner()          ← NEW: prints the welcome banner
 └── while True: loop        ← NEW: replaces single hardcoded query
-    ├── input("🔍 Compliance Query > ")
+    ├── input(" Compliance Query > ")
     ├── skip empty input
     ├── exit check
     ├── client.agents.messages.create(thread_id=thread.id, ...)
@@ -116,20 +116,20 @@ You should see the banner, then the prompt:
 
 ```
 ╔══════════════════════════════════════════════════╗
-║      🛡️  Compliance Compass Agent  🛡️            ║
+║        Compliance Compass Agent              ║
 ║   Regulatory Risk Assessment & Policy Analysis   ║
 ╠══════════════════════════════════════════════════╣
 ║  Describe your compliance scenario to begin.     ║
 ║  Type 'exit' or press Ctrl+C to quit.            ║
 ╚══════════════════════════════════════════════════╝
 
-🔍 Compliance Query >
+ Compliance Query >
 ```
 
 ### Test Scenario 1: Vendor Risk
 
 ```
-🔍 Compliance Query > Assessing risks for a new AI analytics vendor based in 
+ Compliance Query > Assessing risks for a new AI analytics vendor based in 
 Singapore that will process our customer transaction data. RBI concerns?
 ```
 
@@ -140,7 +140,7 @@ Singapore that will process our customer transaction data. RBI concerns?
 Without restarting, immediately enter:
 
 ```
-🔍 Compliance Query > Based on the previous assessment, what contract clauses 
+ Compliance Query > Based on the previous assessment, what contract clauses 
 should we include in the vendor agreement?
 ```
 
@@ -149,7 +149,7 @@ should we include in the vendor agreement?
 ### Test Scenario 3: Cross-Border Transfer
 
 ```
-🔍 Compliance Query > We are transferring EU customer personal data to our 
+ Compliance Query > We are transferring EU customer personal data to our 
 India headquarters for payroll processing. What GDPR safeguards are required?
 ```
 
@@ -158,11 +158,11 @@ India headquarters for payroll processing. What GDPR safeguards are required?
 ### Test Scenario 4: Exit
 
 ```
-🔍 Compliance Query > exit
+ Compliance Query > exit
 ```
 
 ```
-Thank you for using Compliance Compass. Stay compliant! 👋
+Thank you for using Compliance Compass. Stay compliant! 
 ```
 
 ---
@@ -235,7 +235,7 @@ This is fine for testing, but a real compliance agent needs to accept **multiple
 
    Requirements:
    1. After creating the agent and thread, enter an interactive loop that:
-      - Displays a prompt "🔍 Compliance Query > " and waits for user input
+      - Displays a prompt " Compliance Query > " and waits for user input
       - Sends the user's input to the agent
       - Prints the agent's response
       - Loops back to accept the next query
@@ -246,13 +246,13 @@ This is fine for testing, but a real compliance agent needs to accept **multiple
    3. Add graceful exit handling:
       - User can type "exit", "quit", or "bye" to end the session
       - Display a farewell message: "Thank you for using Compliance Compass. 
-        Stay compliant! 👋"
+        Stay compliant! "
       - Handle Ctrl+C gracefully with the same farewell message
    
    4. Add a welcome banner at the start:
       ```
       ╔══════════════════════════════════════════════════╗
-      ║         🛡️  Compliance Compass Agent  🛡️         ║
+      ║           Compliance Compass Agent           ║
       ║   Regulatory Risk Assessment & Policy Analysis   ║
       ╠══════════════════════════════════════════════════╣
       ║  Type your compliance scenario to get started.   ║
@@ -287,7 +287,7 @@ The generated `run_agent_interactive.py` should include the following key sectio
 ```python
 def print_banner():
     print("╔══════════════════════════════════════════════════╗")
-    print("║         🛡️  Compliance Compass Agent  🛡️         ║")
+    print("║           Compliance Compass Agent           ║")
     print("║   Regulatory Risk Assessment & Policy Analysis   ║")
     print("╠══════════════════════════════════════════════════╣")
     print("║  Type your compliance scenario to get started.   ║")
@@ -304,13 +304,13 @@ print_banner()
 
 while True:
     try:
-        user_input = input("🔍 Compliance Query > ").strip()
+        user_input = input(" Compliance Query > ").strip()
         
         if not user_input:
             continue
         
         if user_input.lower() in ("exit", "quit", "bye"):
-            print("\nThank you for using Compliance Compass. Stay compliant! 👋")
+            print("\nThank you for using Compliance Compass. Stay compliant! ")
             break
         
         # Send message to the agent using the same thread
@@ -331,7 +331,7 @@ while True:
         # Print the latest assistant message
         
     except KeyboardInterrupt:
-        print("\n\nThank you for using Compliance Compass. Stay compliant! 👋")
+        print("\n\nThank you for using Compliance Compass. Stay compliant! ")
         break
 ```
 
@@ -355,7 +355,7 @@ while True:
 
    ```
    ╔══════════════════════════════════════════════════╗
-   ║         🛡️  Compliance Compass Agent  🛡️         ║
+   ║           Compliance Compass Agent           ║
    ║   Regulatory Risk Assessment & Policy Analysis   ║
    ╠══════════════════════════════════════════════════╣
    ║  Type your compliance scenario to get started.   ║
@@ -368,7 +368,7 @@ while True:
 Enter the following query:
 
 ```
-🔍 Compliance Query > Assessing risks for a new AI analytics vendor based in Singapore that will process our customer transaction data. Are there any RBI localization concerns?
+ Compliance Query > Assessing risks for a new AI analytics vendor based in Singapore that will process our customer transaction data. Are there any RBI localization concerns?
 ```
 
 **Expected:** A structured compliance report with RBI data localization findings.
@@ -378,7 +378,7 @@ Enter the following query:
 Without restarting the agent, enter a follow-up query:
 
 ```
-🔍 Compliance Query > Based on the previous assessment, what specific contract clauses should we include in the vendor agreement?
+ Compliance Query > Based on the previous assessment, what specific contract clauses should we include in the vendor agreement?
 ```
 
 **Expected:** The agent should reference the previous Singapore vendor scenario and suggest clauses based on the mitigation templates and RBI vendor onboarding documents.
@@ -386,7 +386,7 @@ Without restarting the agent, enter a follow-up query:
 ### Test Scenario 3: Cross-Border Transfer
 
 ```
-🔍 Compliance Query > We are transferring customer personal data from our EU subsidiary to our India headquarters. What GDPR safeguards are required?
+ Compliance Query > We are transferring customer personal data from our EU subsidiary to our India headquarters. What GDPR safeguards are required?
 ```
 
 **Expected:** A report referencing GDPR Article 44, Schrems II, and Standard Contractual Clauses.
@@ -394,13 +394,13 @@ Without restarting the agent, enter a follow-up query:
 ### Test Scenario 4: Exit
 
 ```
-🔍 Compliance Query > exit
+ Compliance Query > exit
 ```
 
 **Expected:**
 
 ```
-Thank you for using Compliance Compass. Stay compliant! 👋
+Thank you for using Compliance Compass. Stay compliant! 
 ```
 
 ---

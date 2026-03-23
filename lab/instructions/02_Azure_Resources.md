@@ -1,4 +1,4 @@
-# Module II — Provisioning Azure Resources
+﻿# Module II — Provisioning Azure Resources
 
 > [!NOTE]
 > **Duration:** ~15 minutes
@@ -20,21 +20,21 @@
 
 ```mermaid
 graph TD
-    RG["🗂️ Resource Group\ncompliance-agent-rg"]
+    RG[" Resource Group\ncompliance-agent-rg"]
 
-    subgraph AIF["🏢 AI Foundry Hub: Compliance-Sentinel"]
-        GPT["🧠 gpt-4o\nReasoning Model"]
-        EMB["🔢 compliance-embedding\ntext-embedding-ada-002"]
+    subgraph AIF[" AI Foundry Hub: Compliance-Sentinel"]
+        GPT[" gpt-4o\nReasoning Model"]
+        EMB[" compliance-embedding\ntext-embedding-ada-002"]
     end
 
-    subgraph STO["💾 Storage Account: compliancekb"]
-        BC["📁 Blob Container: kb-documents"]
-        DOCS["📄 12 Compliance\nMarkdown Files"]
+    subgraph STO[" Storage Account: compliancekb"]
+        BC[" Blob Container: kb-documents"]
+        DOCS[" 12 Compliance\nMarkdown Files"]
         BC --> DOCS
     end
 
-    subgraph AIS["🔍 Azure AI Search: compliancesearch (Free)"]
-        IDX["📇 Index: knowledgesource-index\n81 document chunks"]
+    subgraph AIS[" Azure AI Search: compliancesearch (Free)"]
+        IDX[" Index: knowledgesource-index\n81 document chunks"]
     end
 
     RG --> AIF

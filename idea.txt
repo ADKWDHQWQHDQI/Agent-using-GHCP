@@ -1,4 +1,4 @@
-Understand the requriement completely and clearly and very carefully, the main need is to build agent using ghcp agent mode, now iwill guide you and make you understand the complete scenerio very carefully and completely,
+﻿Understand the requriement completely and clearly and very carefully, the main need is to build agent using ghcp agent mode, now iwill guide you and make you understand the complete scenerio very carefully and completely,
  don't read the codebase read only attaced files.
  now the plan is to build the compliance agent, which is 
  Compliance Compass – RAG Agent Overview
@@ -167,7 +167,7 @@ GHCP = Builder + Debugger + Extender
 based on this a simple scenerio
 Module IV (View Code + Debugging)
 
-This is where your workshop becomes 🔥 unique
+This is where your workshop becomes  unique
 
 You included:
 
@@ -177,9 +177,9 @@ Aiohttp issue
 
 Copilot debugging
 
-👉 This is GOLD.
+ This is GOLD.
 
-💡 Make it stronger:
+ Make it stronger:
 
 Instead of just:
 
@@ -187,7 +187,7 @@ Instead of just:
 
 Add:
 
-🔧 Copilot Prompt Example (Make this explicit)
+ Copilot Prompt Example (Make this explicit)
 You are debugging an Azure AI Foundry agent runtime.
 
 Error:
