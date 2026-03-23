@@ -2,7 +2,24 @@
 
 > **Audience:** Developers, Compliance Engineers, Tech Leads, Architects
 > **Duration:** ~90 minutes (7 modules)
-> **Prerequisites:** VS Code, Python 3.10+, Azure subscription, GitHub Copilot access
+
+---
+
+## Prerequisites
+
+| Requirement | Details |
+|---|---|
+| **Azure Subscription** | Active subscription with permission to create resources |
+| **GitHub Copilot** | Individual, Business, or Enterprise plan |
+| **Visual Studio Code** | Latest version — [Download](https://code.visualstudio.com/download) |
+| **Python** | 3.10 or higher — [Download](https://www.python.org/downloads/) |
+| **Azure CLI** | 2.60+ and authenticated (`az login`) — [Install](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) |
+| **Git** | Any recent version — [Install](https://git-scm.com/downloads) |
+| **Docker Desktop** | *(Optional — Module VII only)* — [Install](https://www.docker.com/products/docker-desktop/) |
+
+**VS Code Extensions required:** GitHub Copilot, GitHub Copilot Chat, AI Toolkit for VS Code (Microsoft), Python (Microsoft).
+
+> Full installation and verification steps are in [Module I: Prerequisites and Environment Setup](lab/instructions/01_Prerequisites.md).
 
 ---
 
@@ -35,8 +52,8 @@ GitHub Copilot = Builder + Debugger + Extender
                                                                    │
 ┌─────────────┐    ┌──────────────┐    ┌──────────────┐           │
 │  Module VII  │◀──│  Module VI   │◀──│  Module V    │◀──────────┘
-│  Docker +    │    │  Streamlit   │    │  Interactive │
-│  Testing     │    │  Web UI      │    │  Input       │
+│  Docker+Test │    │  Streamlit   │    │  Interactive │
+│  (Optional)  │    │  Web UI      │    │  Input       │
 └─────────────┘    └──────────────┘    └──────────────┘
 ```
 
@@ -52,7 +69,7 @@ GitHub Copilot = Builder + Debugger + Extender
 | **IV** | [Exporting Code & Debugging with Copilot](lab/instructions/04_Code_Export_Debug.md) | Export to Python, encounter real Azure SDK error, debug with Copilot | 15 min |
 | **V** | [Adding Interactive Input](lab/instructions/05_Interactive_Input.md) | Transform hardcoded queries into interactive CLI with Copilot | 10 min |
 | **VI** | [Building a Professional Web UI](lab/instructions/06_Web_UI.md) | Generate a complete Streamlit chat UI with Copilot Agent mode | 15 min |
-| **VII** | [Containerization & Testing](lab/instructions/07_Containerize_Test.md) | Dockerize the app, run quality tests, refine agent instructions | 15 min |
+| **VII** | [Containerization & Testing *(Optional)*](lab/instructions/07_Containerize_Test.md) | Dockerize the app *(optional)*, run quality tests, refine agent instructions | 15 min |
 
 ---
 

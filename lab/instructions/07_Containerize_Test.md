@@ -1,21 +1,25 @@
-# Module VII — Containerization and Testing
+# Module VII — Containerization and Testing *(Optional)*
 
 > [!NOTE]
 > **Duration:** ~15 minutes
-> In this final module, you will use GitHub Copilot to containerize the Compliance Compass application with Docker and (optionally) evaluate the agent's response quality through structured test scenarios. This prepares the application for production deployment.
+> **This module is fully optional.** Part A (Docker containerization) requires Docker Desktop and preparation for production deployment. Part B (structured testing) is a standalone activity you can do independently of Docker.
+> Skip to [Part B: Structured Testing](#part-b-structured-testing) if you do not have Docker Desktop installed.
 
 ---
 
 ## Objectives
 
-- Use GitHub Copilot Agent mode to generate a Dockerfile for the Streamlit application
-- Build and run the Docker container locally
-- **(Optional)** Generate structured test scenarios to evaluate agent quality
-- **(Optional)** Refine the agent instructions in AI Toolkit based on test results
+- *(Optional)* Use GitHub Copilot Agent mode to generate a Dockerfile for the Streamlit application
+- *(Optional)* Build and run the Docker container locally
+- Generate structured test scenarios to evaluate agent quality
+- Refine the agent instructions in AI Toolkit based on test results
 
 ---
 
-## Part A: Containerization with Docker
+## Part A: Containerization with Docker *(Optional)*
+
+> [!NOTE]
+> **Part A requires Docker Desktop.** If Docker Desktop is not installed, skip ahead to [Part B: Structured Testing](#part-b-structured-testing).
 
 ### Step 1: Generate the Dockerfile with Copilot
 

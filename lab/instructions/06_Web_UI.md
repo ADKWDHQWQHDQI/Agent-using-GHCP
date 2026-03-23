@@ -21,56 +21,52 @@
 
 2. Switch to **Agent mode** using the mode selector.
 
-3. Ensure `run_agent.py` (or `run_agent_interactive.py`) is referenced as context.
+3. Ensure `run_agent.py` is referenced as context — this file now contains the interactive loop added in Module V.
 
-4. Send the following detailed prompt:
+4. Send the following prompt:
 
    ```
-   Using the Compliance Compass agent code in run_agent.py as the foundation, 
-   create a complete web-based chat UI for the compliance agent.
+   # Context
+   I have a working Azure AI Foundry compliance agent in run_agent.py.
+   It uses:
+   - azure-ai-projects SDK with DefaultAzureCredential
+   - Azure AI Search as a RAG tool (already configured)
+   - An interactive input loop (added in Module V)
+   Load the .env file with load_dotenv() for all credentials.
 
-   Requirements:
-   - Use Streamlit as the UI framework
-   - Create the UI file as app_ui.py in the same directory as run_agent.py
-   
-   UI Design:
-   - Professional, clean design suitable for an enterprise compliance tool
-   - Header with "🛡️ Compliance Compass" branding and a subtitle: 
-     "Regulatory Risk Assessment & Policy Analysis"
-   - Sidebar with:
-     - "About" section explaining what the tool does
-     - "Sample Queries" section with 3-4 clickable example prompts:
-       1. "Assess vendor risk for an AI company in Singapore processing 
-          payment data"
-       2. "GDPR compliance requirements for transferring data to China"
-       3. "Review contract clause: Customer data stored on servers in 
-          Frankfurt with backups in Mumbai"
-       4. "What RBI regulations apply to third-party fintech vendors?"
-     - "Session Info" showing the number of queries in the current session
-   
-   Chat Interface:
-   - Full chat history display with user messages and agent responses
-   - Agent responses should render Markdown (headers, bold, lists, tables)
-   - User input text box at the bottom with a "Send" button
-   - Loading spinner with message "Analyzing compliance scenario..." 
-     while the agent processes
-   - Each response should show a timestamp
-   
-   Functionality:
-   - Maintain conversation context across messages using the same thread
-   - Clicking a sample query in the sidebar should populate the input 
-     and send it
-   - Add a "Clear Chat" button to start a fresh session
-   
-   Technical:
-   - Reuse the exact same agent creation logic, Azure AI Search tool 
-     configuration, and any patches from run_agent.py
-   - Use Streamlit session_state to maintain the agent, thread, and 
-     chat history
-   - Handle errors gracefully (show user-friendly messages)
-   - Add the Azure authentication (DefaultAzureCredential) setup
-   
-   Also update requirements.txt to include streamlit as a dependency.
+   # Task
+   Create app_ui.py — a complete Streamlit web UI for this agent.
+   Do NOT modify run_agent.py. Extract agent creation, thread management,
+   and query-sending logic and adapt it for Streamlit session state.
+
+   # UI Requirements
+   1. PAGE — st.set_page_config: title "Compliance Compass", icon "🛡️", wide layout
+   2. HEADER — "🛡️ Compliance Compass" + subtitle "Regulatory Risk Assessment & Policy Analysis"
+   3. SIDEBAR:
+      - About section (2-sentence description)
+      - Sample Queries (4 buttons, clicking sends that query directly):
+        a) "Assess vendor risk for an AI company in Singapore processing payment data"
+        b) "GDPR requirements for transferring EU customer data to India"
+        c) "RBI data localization rules for third-party fintech vendors"
+        d) "DPDP Act obligations for a new SaaS vendor processing Indian citizen data"
+      - Session Info: st.metric showing query count
+      - Clear Chat button that resets agent, thread, and message history
+   4. CHAT INTERFACE:
+      - Display full message history (user + assistant bubbles)
+      - Render agent responses with st.markdown (supports headers, bold, tables)
+      - Show timestamp (HH:MM) under each response
+      - st.chat_input at bottom, or text_area + Send button
+      - Spinner with label "Analyzing compliance scenario..." during processing
+
+   # Technical Constraints
+   - Use st.session_state for: agent, thread_id, messages list, query_count
+   - Initialize agent and thread ONCE (on first load), reuse across all messages
+   - Reuse the same thread_id for every message (conversation context must persist)
+   - Catch exceptions from the Azure SDK and display a friendly st.error() message
+   - Output file: app_ui.py (same directory as run_agent.py)
+
+   # Dependency
+   Update requirements.txt to add streamlit.
    ```
 
 5. Copilot will generate the `app_ui.py` file and update `requirements.txt`.
@@ -282,7 +278,7 @@ Fix the display logic in app_ui.py.
 
 ## Prerequisites Checklist
 
-Before moving to Module VII, confirm:
+Before moving to Module VII (Optional), confirm:
 
 - [ ] `app_ui.py` created with Streamlit-based chat UI
 - [ ] `requirements.txt` updated with `streamlit` dependency
@@ -304,4 +300,4 @@ Before moving to Module VII, confirm:
 
 ---
 
-Click **Next** to proceed to [Module VII: Containerization and Testing](./07_Containerize_Test.md).
+Click **Next** to proceed to [Module VII: Containerization and Testing *(Optional)*](./07_Containerize_Test.md).

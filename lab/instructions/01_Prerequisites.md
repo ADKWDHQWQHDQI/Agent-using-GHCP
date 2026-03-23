@@ -25,7 +25,7 @@ Ensure the following software is installed on your machine. If any tool is missi
 | **Python** | 3.10+ | [Download Python](https://www.python.org/downloads/) |
 | **Azure CLI** | 2.60+ | [Install Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) |
 | **Git** | Latest | [Install Git](https://git-scm.com/downloads) |
-| **Docker Desktop** (Module VII) | Latest | [Install Docker](https://www.docker.com/products/docker-desktop/) |
+| **Docker Desktop** *(Optional — Module VII only)* | Latest | [Install Docker](https://www.docker.com/products/docker-desktop/) |
 
 ### Verify Installations
 

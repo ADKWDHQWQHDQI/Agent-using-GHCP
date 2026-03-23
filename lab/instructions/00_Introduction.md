@@ -14,7 +14,7 @@ By the end of this workshop, you will be able to:
 - **Design and prototype an agent** in AI Toolkit Agent Builder with Azure AI Search as a grounding tool.
 - **Export agent code** and debug real-world runtime errors using GitHub Copilot.
 - **Extend the agent** with interactive input and a professional web UI using GitHub Copilot Agent mode.
-- **Containerize the application** for deployment using Docker.
+- **Containerize the application** for deployment using Docker *(Optional)*.
 - **Evaluate and refine** agent responses through structured test scenarios.
 
 ---
@@ -91,7 +91,7 @@ You will build **Compliance Compass**, an intelligent compliance RAG agent that:
 | **IV** | [Exporting Code and Debugging with Copilot](./04_Code_Export_Debug.md) | Export to Python, encounter a real Azure SDK error, debug with Copilot | 15 min |
 | **V** | [Adding Interactive Input](./05_Interactive_Input.md) | Transform hardcoded queries into an interactive CLI with Copilot | 10 min |
 | **VI** | [Building a Professional Web UI](./06_Web_UI.md) | Generate a complete Streamlit chat UI using Copilot Agent mode | 15 min |
-| **VII** | [Containerization and Testing](./07_Containerize_Test.md) | Dockerize the app, run quality tests, refine agent instructions | 15 min |
+| **VII** | [Containerization and Testing *(Optional)*](./07_Containerize_Test.md) | Dockerize the app with Docker *(optional)*, run quality tests, refine agent instructions | 15 min |
 
 **Total Duration:** ~90 minutes
 
