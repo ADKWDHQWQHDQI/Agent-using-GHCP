@@ -7,7 +7,9 @@
 
 ## Prerequisites
 
-### Tools & Accounts
+### Participant Requirements
+
+Each participant needs the following accounts and tools on their machine:
 
 | Requirement | Details |
 |---|---|
@@ -19,24 +21,24 @@
 | **Git** | Any recent version — [Install](https://git-scm.com/downloads) |
 | **Docker Desktop** | *(Optional — Module VII only)* — [Install](https://www.docker.com/products/docker-desktop/) |
 
-### Azure Resources to Pre-provision (for Workshop Facilitators)
-
-Before students begin, the following Azure resources must be created in the subscription. All tiers listed are the minimum required and stay within free or low-cost limits.
-
-| Azure Resource | Purpose | Recommended Tier |
-|---|---|---|
-| **Azure AI Foundry Hub + Project** | Hosts GPT-4o (reasoning) and text-embedding model; manages the agent | Standard — use `S0` or pay-as-you-go; free quota available for GPT-4o in supported regions |
-| **GPT-4o model deployment** | Powers the agent's reasoning and compliance report generation | Standard deployment — free tier quota (150K tokens/min) available in East US 2, Sweden Central |
-| **text-embedding-ada-002 deployment** | Vectorizes KB documents for semantic search | Standard deployment — free tier quota available |
-| **Azure AI Search** | Indexes and retrieves compliance KB documents (RAG) | **Free tier (F0)** — sufficient for up to 50 MB and 3 indexes |
-| **Azure Blob Storage** | Stores the 12 compliance Knowledge Base documents | **LRS (Locally Redundant Storage)** — storage cost is negligible (<1 MB); use the free 5 GB included with any subscription |
-
-> [!NOTE]
-> Full step-by-step provisioning instructions (Portal and CLI) are in [Module II: Provisioning Azure Resources](lab/instructions/02_Azure_Resources.md).
-
 **VS Code Extensions required:** GitHub Copilot, GitHub Copilot Chat, AI Toolkit for VS Code (Microsoft), Python (Microsoft).
 
 > Full installation and verification steps are in [Module I: Prerequisites and Environment Setup](lab/instructions/01_Prerequisites.md).
+
+### Workshop Infrastructure (Provisioned Before the Session)
+
+The following Azure resources must be provisioned inside each participant's subscription prior to the workshop. All tiers listed are free or low-cost for workshop use.
+
+| Azure Resource | Purpose | Tier / SKU |
+|---|---|---|
+| **Azure AI Foundry Hub + Project** | Hosts GPT-4o (reasoning) and the embedding model; manages the agent | Standard — no per-hub charge |
+| **GPT-4o Deployment** | Language model for compliance reasoning and report generation | Standard deployment (pay-per-use) |
+| **text-embedding-ada-002 Deployment** | Embeds knowledge base documents for semantic search | Standard deployment (pay-per-use) |
+| **Azure AI Search** | Indexes the 12 compliance documents; provides RAG retrieval | **Free tier** (up to 50 MB / 3 indexes) |
+| **Azure Storage Account + Blob Container** | Stores the 12 Markdown knowledge base documents | **LRS Standard** (minimal cost; < 1 MB of documents) |
+
+> [!TIP]
+> Module II walks participants through provisioning each of these resources step-by-step, with both portal and Azure CLI instructions. If resources are pre-provisioned by the workshop facilitator, participants can skip directly to the indexing step in Module II.
 
 ---
 

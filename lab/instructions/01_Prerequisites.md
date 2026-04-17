@@ -8,37 +8,35 @@
 
 ## Objectives
 
+- Verify the pre-provisioned Azure resources are accessible
 - Install and verify all required tools
 - Authenticate with Azure using the Azure CLI
 - Confirm GitHub Copilot access in VS Code
 - Validate the AI Toolkit extension is installed
-- Verify the Azure resources needed for the workshop are provisioned
 
 ---
 
-## Step 0: Azure Resources Required (For Workshop Facilitators)
+## Step 0: Azure Infrastructure
 
-> [!IMPORTANT]
-> **Workshop facilitators must provision these Azure resources before students begin.** Students only need an active Azure subscription; all resources below should be created in advance and connection details shared with participants.
+This workshop requires the following Azure resources. These are provisioned as part of the workshop environment — you do not need to create them from scratch. Module II walks through each resource in detail.
 
-The following Azure resources must exist before Module II. All resources can be provisioned in **30–45 minutes** using [Module II](./02_Azure_Resources.md).
-
-| Azure Resource | Name Used in This Workshop | Tier | Purpose |
-|---|---|---|---|
-| **Resource Group** | `compliance-agent-rg` | Free | Logical container for all resources |
-| **Azure AI Foundry Hub** | `Compliance-Sentinel` | Standard (pay-as-you-go) | Hosts models and manages agent deployment |
-| **GPT-4o model deployment** | `gpt-4o` | Standard — free quota in supported regions | Agent reasoning and compliance report generation |
-| **text-embedding-ada-002 deployment** | `compliance-embedding` | Standard — free quota in supported regions | Document vectorization for semantic search |
-| **Azure Blob Storage Account** | `compliancekb` | **Free** (LRS, <1 MB used) | Stores the 12 compliance KB Markdown documents |
-| **Blob Container** | `kb-documents` | Free | Container for KB document upload |
-| **Azure AI Search** | `compliancesearch` | **Free tier (F0)** | Indexes KB documents; supports RAG retrieval |
-| **AI Search Index** | `knowledgesource-*-index` | Free | 81 document chunks from the 12 KB files |
+| Resource | Name Used in Lab | Tier |
+|---|---|---|
+| **Azure AI Foundry Hub + Project** | `Compliance-Sentinel` | Standard |
+| **GPT-4o model deployment** | `gpt-4o` | Standard (pay-per-use) |
+| **Embedding model deployment** | `compliance-embedding` (text-embedding-ada-002) | Standard (pay-per-use) |
+| **Azure AI Search** | `compliancesearch` | **Free tier** |
+| **Storage Account + Blob Container** | `compliancekb` / `kb-documents` | Standard LRS |
 
 > [!TIP]
-> **Supported regions with free GPT-4o quota:** East US, East US 2, Sweden Central, West US 3. Use one of these regions for all resources to avoid quota issues.
+> If you are the workshop facilitator, these resources are provisioned by following [Module II: Provisioning Azure Resources](./02_Azure_Resources.md) in advance. Participants can then verify access and proceed directly to the agent design steps.
 
-> [!NOTE]
-> Azure AI Search **Free tier (F0)** supports up to 50 MB storage and 3 indexes — more than enough for this workshop's 12 documents (~1 MB total).
+**Verify Azure access:**
+
+```bash
+az login
+az account show --query "{Name:name, SubscriptionId:id}" -o table
+```
 
 ---
 
@@ -263,7 +261,7 @@ These documents will be uploaded to Azure Blob Storage in Module II.
 
 Before moving to Module II, confirm:
 
-**Tools**
+- [ ] Azure resources accessible (AI Foundry, AI Search, Storage Account)
 - [ ] Python 3.10+ installed and verified
 - [ ] Azure CLI installed and authenticated (`az login`)
 - [ ] VS Code installed with all required extensions
@@ -271,12 +269,6 @@ Before moving to Module II, confirm:
 - [ ] AI Toolkit extension installed and signed in with Azure
 - [ ] Workshop repository cloned and opened in VS Code
 - [ ] 12 KB Markdown documents present in `kb_markdown/`
-
-**Azure Resources (facilitator)**
-- [ ] Resource Group `compliance-agent-rg` created
-- [ ] AI Foundry Hub `Compliance-Sentinel` deployed with GPT-4o and embedding model
-- [ ] Blob Storage `compliancekb` with container `kb-documents` created and 12 documents uploaded
-- [ ] Azure AI Search `compliancesearch` (Free tier) created and index built
 
 ---
 
