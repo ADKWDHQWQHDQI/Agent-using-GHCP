@@ -7,6 +7,8 @@
 
 ## Prerequisites
 
+### Tools & Accounts
+
 | Requirement | Details |
 |---|---|
 | **Azure Subscription** | Active subscription with permission to create resources |
@@ -16,6 +18,21 @@
 | **Azure CLI** | 2.60+ and authenticated (`az login`) — [Install](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) |
 | **Git** | Any recent version — [Install](https://git-scm.com/downloads) |
 | **Docker Desktop** | *(Optional — Module VII only)* — [Install](https://www.docker.com/products/docker-desktop/) |
+
+### Azure Resources to Pre-provision (for Workshop Facilitators)
+
+Before students begin, the following Azure resources must be created in the subscription. All tiers listed are the minimum required and stay within free or low-cost limits.
+
+| Azure Resource | Purpose | Recommended Tier |
+|---|---|---|
+| **Azure AI Foundry Hub + Project** | Hosts GPT-4o (reasoning) and text-embedding model; manages the agent | Standard — use `S0` or pay-as-you-go; free quota available for GPT-4o in supported regions |
+| **GPT-4o model deployment** | Powers the agent's reasoning and compliance report generation | Standard deployment — free tier quota (150K tokens/min) available in East US 2, Sweden Central |
+| **text-embedding-ada-002 deployment** | Vectorizes KB documents for semantic search | Standard deployment — free tier quota available |
+| **Azure AI Search** | Indexes and retrieves compliance KB documents (RAG) | **Free tier (F0)** — sufficient for up to 50 MB and 3 indexes |
+| **Azure Blob Storage** | Stores the 12 compliance Knowledge Base documents | **LRS (Locally Redundant Storage)** — storage cost is negligible (<1 MB); use the free 5 GB included with any subscription |
+
+> [!NOTE]
+> Full step-by-step provisioning instructions (Portal and CLI) are in [Module II: Provisioning Azure Resources](lab/instructions/02_Azure_Resources.md).
 
 **VS Code Extensions required:** GitHub Copilot, GitHub Copilot Chat, AI Toolkit for VS Code (Microsoft), Python (Microsoft).
 
