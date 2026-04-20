@@ -1,4 +1,4 @@
-﻿# Compliance Compass — Build AI Agents with Microsoft Foundry, AI Toolkit & GitHub Copilot
+﻿# Compliance Compass — Build AI Agents with Microsoft Foundry, Foundry Toolkit for VS Code & GitHub Copilot
 
 > **Audience:** Developers, Compliance Engineers, Tech Leads, Architects
 > **Duration:** ~90 minutes (7 modules)
@@ -21,7 +21,7 @@ Each participant needs the following accounts and tools on their machine:
 | **Git** | Any recent version — [Install](https://git-scm.com/downloads) |
 | **Docker Desktop** | *(Optional — Module VII only)* — [Install](https://www.docker.com/products/docker-desktop/) |
 
-**VS Code Extensions required:** GitHub Copilot, GitHub Copilot Chat, AI Toolkit for VS Code (Microsoft), Python (Microsoft).
+**VS Code Extensions required:** GitHub Copilot, GitHub Copilot Chat, Foundry Toolkit for VS Code (Microsoft), Python (Microsoft).
 
 > Full installation and verification steps are in [Module I: Prerequisites and Environment Setup](lab/instructions/01_Prerequisites.md).
 
@@ -49,12 +49,12 @@ The following Azure resources must be provisioned inside each participant's subs
 The agent is powered by:
 - **Microsoft AI Foundry** (GPT-4o + embedding model)
 - **Azure AI Search** (knowledge retrieval from 12 compliance documents)
-- **AI Toolkit for VS Code** (visual agent design)
+- **Foundry Toolkit for VS Code** (visual agent design)
 - **GitHub Copilot** (code generation, debugging, UI creation, containerization)
 
 ```
 Azure = Brain (Models + Search)
-AI Toolkit = Agent Designer
+Foundry Toolkit for VS Code = Agent Designer
 GitHub Copilot = Builder + Debugger + Extender
 ```
 
@@ -80,9 +80,9 @@ flowchart LR
 
 | # | Module | Description | Duration |
 |---|---|---|---|
-| **I** | [Prerequisites & Environment Setup](lab/instructions/01_Prerequisites.md) | Install tools, configure Azure CLI, sign in to Copilot & AI Toolkit | 10 min |
+| **I** | [Prerequisites & Environment Setup](lab/instructions/01_Prerequisites.md) | Install tools, configure Azure CLI, sign in to Copilot & Foundry Toolkit for VS Code | 10 min |
 | **II** | [Provisioning Azure Resources](lab/instructions/02_Azure_Resources.md) | Create AI Foundry hub, deploy models, set up Blob Storage & AI Search | 15 min |
-| **III** | [Designing the Agent in AI Toolkit](lab/instructions/03_Agent_Design.md) | Build the compliance agent visually with instructions & Azure AI Search tool | 10 min |
+| **III** | [Designing the Agent in Foundry Toolkit for VS Code](lab/instructions/03_Agent_Design.md) | Build the compliance agent visually with instructions & Azure AI Search tool | 10 min |
 | **IV** | [Exporting Code & Debugging with Copilot](lab/instructions/04_Code_Export_Debug.md) | Export to Python, encounter real Azure SDK error, debug with Copilot | 15 min |
 | **V** | [Adding Interactive Input](lab/instructions/05_Interactive_Input.md) | Transform hardcoded queries into interactive CLI with Copilot | 10 min |
 | **VI** | [Building a Professional Web UI](lab/instructions/06_Web_UI.md) | Generate a complete Streamlit chat UI with Copilot Agent mode | 15 min |

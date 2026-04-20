@@ -1,6 +1,6 @@
 # Module I — Prerequisites and Environment Setup
 
-> [!NOTE]
+ > [!NOTE]
 > **Duration:** ~10 minutes
 > Ensure all tools and accounts are configured before proceeding to the next module.
 
@@ -12,7 +12,7 @@
 - Install and verify all required tools
 - Authenticate with Azure using the Azure CLI
 - Confirm GitHub Copilot access in VS Code
-- Validate the AI Toolkit extension is installed
+- Validate the Foundry Toolkit for VS Code extension is installed
 
 ---
 
@@ -99,9 +99,9 @@ Install the following extensions in Visual Studio Code:
    - Search for `GitHub Copilot Chat`
    - Click **Install**
 
-3. **AI Toolkit for VS Code** — Agent builder and model playground
-   - Search for `AI Toolkit`
-   - Click **Install**
+3. **Foundry Toolkit for VS Code** — Agent builder and model playground
+   - [Install Foundry Toolkit for VS Code](https://code.visualstudio.com/docs/intelligentapps/overview#_install-and-setup)
+   - Or search for `Foundry Toolkit` in the Extensions panel (`Ctrl+Shift+X`)
    - Publisher: **Microsoft**
 
 4. **Python** — Python language support
@@ -113,10 +113,10 @@ Install the following extensions in Visual Studio Code:
 
 After installation, you should see:
 - **GitHub Copilot** icon in the bottom-right status bar
-- **AI Toolkit** icon in the left Activity Bar (looks like a chip/brain icon)
+- **Foundry Toolkit for VS Code** icon in the left Activity Bar (looks like a chip/brain icon)
 
 > [!TIP]
-> After installation, verify the **GitHub Copilot** icon appears in the bottom-right status bar and the **AI Toolkit** icon (chip/brain icon) appears in the left Activity Bar. If you do not see the AI Toolkit icon, right-click on the Activity Bar and enable **AI Toolkit**.
+> After installation, verify the **GitHub Copilot** icon appears in the bottom-right status bar and the **Foundry Toolkit for VS Code** icon appears in the left Activity Bar. If you do not see the Foundry Toolkit for VS Code icon, right-click on the Activity Bar and enable **Foundry Toolkit for VS Code**.
 
 ---
 
@@ -184,11 +184,11 @@ The workshop requires an active Azure subscription with permissions to create re
 
 ---
 
-## Step 5: Sign In to AI Toolkit
+## Step 5: Sign In to Foundry Toolkit for VS Code
 
-1. Click the **AI Toolkit** icon in the VS Code Activity Bar (left sidebar).
+1. Click the **Foundry Toolkit for VS Code** icon in the VS Code Activity Bar (left sidebar).
 
-2. You will see the AI Toolkit panel with sections like:
+2. You will see the Foundry Toolkit for VS Code panel with sections like:
    - **Local Resources**
    - **Compliance-Sentinel** (your Foundry project — will appear after Module II)
 
@@ -196,7 +196,7 @@ The workshop requires an active Azure subscription with permissions to create re
 
 4. After signing in, you should see your Foundry project and connected resources.
 
-> After signing in, expand the AI Toolkit panel — you should see your Foundry project (e.g., **Compliance-Sentinel**) with sections for **Models**, **Prompt Agents**, **Workflows**, **Tools**, and **Knowledge**.
+> After signing in, expand the Foundry Toolkit for VS Code panel — you should see your Foundry project (e.g., **Compliance-Sentinel**) with sections for **Models**, **Prompt Agents**, **Workflows**, **Tools**, and **Knowledge**.
 
 ---
 
@@ -266,7 +266,7 @@ Before moving to Module II, confirm:
 - [ ] Azure CLI installed and authenticated (`az login`)
 - [ ] VS Code installed with all required extensions
 - [ ] GitHub Copilot signed in and responding
-- [ ] AI Toolkit extension installed and signed in with Azure
+- [ ] Foundry Toolkit for VS Code extension installed and signed in with Azure
 - [ ] Workshop repository cloned and opened in VS Code
 - [ ] 12 KB Markdown documents present in `kb_markdown/`
 
@@ -276,7 +276,7 @@ Before moving to Module II, confirm:
 
 - A properly configured environment is essential before building AI agents.
 - Azure CLI authentication enables programmatic access to Azure resources from your local machine.
-- The AI Toolkit extension bridges VS Code with Azure AI Foundry, allowing you to design and manage agents visually.
+- The Foundry Toolkit for VS Code extension bridges VS Code with Azure AI Foundry, allowing you to design and manage agents visually.
 - GitHub Copilot Agent mode will be your primary tool for coding, debugging, and extending the compliance agent.
 
 ---

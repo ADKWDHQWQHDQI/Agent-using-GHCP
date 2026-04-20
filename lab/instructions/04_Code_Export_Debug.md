@@ -2,13 +2,13 @@
 
 > [!NOTE]
 > **Duration:** ~15 minutes
-> This is the module where **GitHub Copilot becomes your primary tool**. You will export the agent from AI Toolkit to Python code, encounter a real-world runtime error, and use Copilot to diagnose and fix it. This teaches not just how to *use* Copilot, but how to *think* with Copilot.
+> This is the module where **GitHub Copilot becomes your primary tool**. You will export the agent from Foundry Toolkit for VS Code to Python code, encounter a real-world runtime error, and use Copilot to diagnose and fix it. This teaches not just how to *use* Copilot, but how to *think* with Copilot.
 
 ---
 
 ## Objectives
 
-- Export the Compliance Agent from AI Toolkit to Python code via **View Code**
+- Export the Compliance Agent from Foundry Toolkit for VS Code to Python code via **View Code**
 - Set up the project directory, install dependencies, and verify the `.env` configuration
 - Run the agent and encounter a common Azure runtime error
 - Use **GitHub Copilot Agent mode** to diagnose, trace, and fix the error
@@ -18,7 +18,7 @@
 
 ## Step 1: Export the Agent Code
 
-1. In the AI Toolkit Agent Builder (where you saved the ComplianceAgent in Module III), locate the **View Code** button at the top-right corner of the screen.
+1. In the Foundry Toolkit for VS Code Agent Builder (where you saved the ComplianceAgent in Module III), locate the **View Code** button at the top-right corner of the screen.
 
 2. Click **View Code**.
 
@@ -356,7 +356,7 @@ This module demonstrated a **real-world debugging workflow** with GitHub Copilot
 
 Before moving to Module V, confirm:
 
-- [ ] Agent code exported from AI Toolkit via **View Code**
+- [ ] Agent code exported from Foundry Toolkit for VS Code via **View Code**
 - [ ] `.env` file configured with correct endpoint and model name
 - [ ] Dependencies installed from `requirements.txt`
 - [ ] Error diagnosed and fixed using GitHub Copilot (if encountered)
@@ -367,7 +367,7 @@ Before moving to Module V, confirm:
 
 ## Key Takeaways
 
-- **View Code** in AI Toolkit generates a complete, runnable agent project from your visual prototype.
+- **View Code** in Foundry Toolkit for VS Code generates a complete, runnable agent project from your visual prototype.
 - Real-world Azure SDK errors (like the gzip/UTF-8 decode issue) are common and can be systematically debugged with Copilot.
 - **Structured prompts** for Copilot (error + trace + constraints + goal) produce better fixes than vague "fix this" requests.
 - GitHub Copilot in **Agent mode** can read files, trace code paths, generate patches, and apply them — all in a single conversation.

@@ -519,4 +519,4 @@ Before moving to Module III, confirm:
 
 ---
 
-Click **Next** to proceed to [Module III: Designing the Agent in AI Toolkit](./03_Agent_Design.md).
+Click **Next** to proceed to [Module III: Designing the Agent in Foundry Toolkit for VS Code](./03_Agent_Design.md).

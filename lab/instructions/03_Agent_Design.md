@@ -1,14 +1,14 @@
-# Module III — Designing the Agent in AI Toolkit
+# Module III — Designing the Agent in Foundry Toolkit for VS Code
 
 > [!NOTE]
 > **Duration:** ~10 minutes
-> In this module, you will use the AI Toolkit extension in VS Code to design and prototype the Compliance Compass agent. You will configure the agent's name, model, instructions, and connect it to Azure AI Search for RAG retrieval. Finally, you will test the agent in the Playground and save it to Foundry.
+> In this module, you will use the Foundry Toolkit for VS Code extension in VS Code to design and prototype the Compliance Compass agent. You will configure the agent's name, model, instructions, and connect it to Azure AI Search for RAG retrieval. Finally, you will test the agent in the Playground and save it to Foundry.
 
 ---
 
 ## Objectives
 
-- Open AI Toolkit in VS Code and connect to the Foundry project
+- Open Foundry Toolkit for VS Code and connect to the Foundry project
 - Create a new Prompt Agent with the appropriate model
 - Write and refine the agent's system instructions
 - Add Azure AI Search as a tool for document retrieval
@@ -17,11 +17,11 @@
 
 ---
 
-## Step 1: Open AI Toolkit and Verify Connection
+## Step 1: Open Foundry Toolkit for VS Code and Verify Connection
 
-1. In VS Code, click the **AI Toolkit** icon in the left Activity Bar.
+1. In VS Code, click the **Foundry Toolkit for VS Code** icon in the left Activity Bar.
 
-2. In the AI Toolkit panel, you should see:
+2. In the Foundry Toolkit for VS Code panel, you should see:
    - **Local Resources**
    - **Compliance-Sentinel** (your Foundry project) under the project section
 
@@ -47,7 +47,7 @@
 
 ## Step 2: Create a New Prompt Agent
 
-1. In the AI Toolkit panel, navigate to **Prompt Agents**.
+1. In the Foundry Toolkit for VS Code panel, navigate to **Prompt Agents**.
 
 2. Click the **+** button to create a new agent.
 
@@ -178,7 +178,7 @@ This is the critical step that connects your agent to the compliance Knowledge B
 9. Click **Add**.
 
 > [!NOTE]
-> You also have the option to create a new index directly from the AI Toolkit. If you click **Create New Azure AI Search Index**, you will see a form to:
+> You also have the option to create a new index directly from the Foundry Toolkit for VS Code. If you click **Create New Azure AI Search Index**, you will see a form to:
 > - Enter an **Index Name**
 > - Select a **Storage account** and **Container**
 > - Choose an **Embedding model deployment**
@@ -249,7 +249,7 @@ Once you are satisfied with the agent's responses:
 
 2. The agent configuration (name, model, instructions, tools) will be saved to your AI Foundry project.
 
-3. After saving, you will see the agent listed under **Prompt Agents** in the AI Toolkit panel.
+3. After saving, you will see the agent listed under **Prompt Agents** in the Foundry Toolkit for VS Code panel.
 
 > [!IMPORTANT]
 > Saving to Foundry is a critical step — it persists your agent configuration in the cloud and enables the **View Code** feature you will use in Module IV.
@@ -260,7 +260,7 @@ Once you are satisfied with the agent's responses:
 
 Before moving to Module IV, confirm:
 
-- [ ] AI Toolkit connected to the Foundry project
+- [ ] Foundry Toolkit for VS Code connected to the Foundry project
 - [ ] Agent `ComplianceAgent` created with `gpt-4o` model
 - [ ] System instructions configured and tested
 - [ ] Azure AI Search tool added with the compliance index
@@ -271,7 +271,7 @@ Before moving to Module IV, confirm:
 
 ## Key Takeaways
 
-- **AI Toolkit Agent Builder** provides a visual, no-code interface for designing AI agents with tools and instructions.
+- **Foundry Toolkit for VS Code Agent Builder** provides a visual, no-code interface for designing AI agents with tools and instructions.
 - **System instructions** (the prompt) define the agent's behavior — clear, structured instructions produce better outputs.
 - **Azure AI Search as a tool** enables RAG retrieval — the agent searches the compliance Knowledge Base before generating responses.
 - **The Playground** allows rapid iteration on instructions and tool configuration before moving to code.

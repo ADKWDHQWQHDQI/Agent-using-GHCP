@@ -1,7 +1,7 @@
 ﻿# Introduction
 
 > [!NOTE]
-> This is a **90-minute** workshop that gives you hands-on experience building a **Compliance RAG Agent** using **Microsoft AI Foundry**, the **AI Toolkit (AITK)** for VS Code, and **GitHub Copilot**. You will go from zero to a fully deployed compliance assistant with a web UI.
+> This is a **90-minute** workshop that gives you hands-on experience building a **Compliance RAG Agent** using **Microsoft AI Foundry**, the **Foundry Toolkit for VS Code**, and **GitHub Copilot**. You will go from zero to a fully deployed compliance assistant with a web UI.
 
 ---
 
@@ -11,7 +11,7 @@ By the end of this workshop, you will be able to:
 
 - **Provision Azure resources** (AI Foundry, Blob Storage, Azure AI Search) required for a RAG agent.
 - **Upload and index compliance documents** into Azure AI Search from Azure Blob Storage.
-- **Design and prototype an agent** in AI Toolkit Agent Builder with Azure AI Search as a grounding tool.
+- **Design and prototype an agent** in Foundry Toolkit for VS Code Agent Builder with Azure AI Search as a grounding tool.
 - **Export agent code** and debug real-world runtime errors using GitHub Copilot.
 - **Extend the agent** with interactive input and a professional web UI using GitHub Copilot Agent mode.
 - **Containerize the application** for deployment using Docker *(Optional)*.
@@ -33,7 +33,7 @@ flowchart LR
     UI -.->|"8. Display"| U
 ```
 
-> **Azure** = Brain (Models + Search) · **AI Toolkit** = Agent Designer · **GitHub Copilot** = Builder + Debugger + Extender
+> **Azure** = Brain (Models + Search) · **Foundry Toolkit for VS Code** = Agent Designer · **GitHub Copilot** = Builder + Debugger + Extender
 
 ---
 
@@ -74,7 +74,7 @@ You will build **Compliance Compass**, an intelligent compliance RAG agent that:
 |---|---|---|---|
 | **I** | [Prerequisites and Environment Setup](./01_Prerequisites.md) | Install tools, authenticate with Azure, configure VS Code extensions | 10 min |
 | **II** | [Provisioning Azure Resources](./02_Azure_Resources.md) | Create AI Foundry hub, deploy models, set up Blob Storage and AI Search | 15 min |
-| **III** | [Designing the Agent in AI Toolkit](./03_Agent_Design.md) | Build the compliance agent visually with instructions and Azure AI Search tool | 10 min |
+| **III** | [Designing the Agent in Foundry Toolkit for VS Code](./03_Agent_Design.md) | Build the compliance agent visually with instructions and Azure AI Search tool | 10 min |
 | **IV** | [Exporting Code and Debugging with Copilot](./04_Code_Export_Debug.md) | Export to Python, encounter a real Azure SDK error, debug with Copilot | 15 min |
 | **V** | [Adding Interactive Input](./05_Interactive_Input.md) | Transform hardcoded queries into an interactive CLI with Copilot | 10 min |
 | **VI** | [Building a Professional Web UI](./06_Web_UI.md) | Generate a complete Streamlit chat UI using Copilot Agent mode | 15 min |
@@ -89,7 +89,7 @@ You will build **Compliance Compass**, an intelligent compliance RAG agent that:
 | Technology | Role in Workshop |
 |---|---|
 | **Microsoft AI Foundry** | The brain — hosts GPT-4o (reasoning) and embedding model; manages agent deployment |
-| **AI Toolkit for VS Code** | The designer — visual builder to configure agents, instructions, and tools without writing code |
+| **Foundry Toolkit for VS Code** | The designer — visual builder to configure agents, instructions, and tools without writing code |
 | **GitHub Copilot (Agent Mode)** | The builder — debugs errors, generates code extensions, creates UI, writes Dockerfile |
 | **Azure AI Search** | The memory — indexes and retrieves relevant compliance policies for RAG grounding |
 | **Azure Blob Storage** | The storage — stores the 12 compliance Knowledge Base documents |

@@ -12,7 +12,7 @@
 - *(Optional)* Use GitHub Copilot Agent mode to generate a Dockerfile for the Streamlit application
 - *(Optional)* Build and run the Docker container locally
 - Generate structured test scenarios to evaluate agent quality
-- Refine the agent instructions in AI Toolkit based on test results
+- Refine the agent instructions in Foundry Toolkit for VS Code based on test results
 
 ---
 
@@ -297,7 +297,7 @@ Diagnose and fix the issue.
 
 If certain test scenarios produce unsatisfactory results:
 
-1. Open the **AI Toolkit Agent Builder** in VS Code.
+1. Open the **Foundry Toolkit for VS Code Agent Builder** in VS Code.
 
 2. Load the saved `ComplianceAgent`.
 
@@ -323,7 +323,7 @@ Congratulations! You have successfully built the **Compliance Compass** agent fr
 |---|---|
 | **I** | Set up the development environment |
 | **II** | Provisioned Azure resources (Foundry, Storage, AI Search) |
-| **III** | Designed the agent visually in AI Toolkit |
+| **III** | Designed the agent visually in Foundry Toolkit for VS Code |
 | **IV** | Exported code and debugged a real Azure SDK error with Copilot |
 | **V** | Extended the agent with interactive CLI input |
 | **VI** | Built a professional Streamlit web UI |
@@ -338,7 +338,7 @@ Azure = Brain (Models + Search)
   └── Azure AI Search: compliance document retrieval
   └── Blob Storage: document storage
 
-AI Toolkit = Agent Designer
+Foundry Toolkit for VS Code = Agent Designer
   └── Visual agent builder with Playground
   └── Tool integration (Azure AI Search)
   └── Save/export to Foundry
@@ -389,7 +389,7 @@ docker rmi compliance-compass:latest
 | Resource | Link |
 |---|---|
 | Azure AI Foundry Documentation | [learn.microsoft.com/azure/ai-studio](https://learn.microsoft.com/azure/ai-studio) |
-| AI Toolkit for VS Code | [code.visualstudio.com/docs/intelligentapps](https://code.visualstudio.com/docs/intelligentapps) |
+| Foundry Toolkit for VS Code | [Install & Setup](https://code.visualstudio.com/docs/intelligentapps/overview#_install-and-setup) |
 | Azure AI Search | [learn.microsoft.com/azure/search](https://learn.microsoft.com/azure/search) |
 | GitHub Copilot | [docs.github.com/copilot](https://docs.github.com/copilot) |
 | Streamlit Documentation | [docs.streamlit.io](https://docs.streamlit.io) |
