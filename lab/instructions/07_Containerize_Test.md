@@ -1,4 +1,4 @@
-﻿# Module VII — Containerization and Testing *(Optional)*
+# Module VII — Containerization and Testing *(Optional)*
 
 > [!NOTE]
 > **Duration:** ~15 minutes
@@ -103,6 +103,10 @@ WORKDIR /app
 # Install dependencies first (layer caching)
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Install curl for health checks
+RUN apt-get update && apt-get install -y --no-install-recommends curl \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy application files
 COPY app_ui.py .
@@ -276,7 +280,7 @@ Diagnose and fix the issue.
                     Compliance Compass — Test Results
    ═══════════════════════════════════════════════════════════════════
    #   Category          Scenario                      Result  Score
-   ─── ────────────────  ────────────────────────────── ─────── ─────
+   ─── ──────────────────  ──────────────────────────── ─────── ─────
    1   Vendor Risk       Singapore AI vendor            PASS    7/10
    2   Vendor Risk       US cloud post-Schrems II       PASS    6/10
    3   Vendor Risk       China manufacturing partner    PASS    8/10
@@ -362,7 +366,7 @@ az group delete --name compliance-agent-rg --yes --no-wait
 ```
 
 > [!IMPORTANT]
-> This will permanently delete all resources in the `compliance-agent-rg` Resource Group, including the AI Foundry hub, deployed models, storage account, and AI Search service.
+> This will permanently delete all resources in the `compliance-agent-rg` Resource Group, including the Microsoft Foundry resource, deployed models, storage account, and AI Search service.
 
 To stop and remove the Docker container:
 
@@ -388,7 +392,7 @@ docker rmi compliance-compass:latest
 
 | Resource | Link |
 |---|---|
-| Azure AI Foundry Documentation | [learn.microsoft.com/azure/ai-studio](https://learn.microsoft.com/azure/ai-studio) |
+| Microsoft Foundry Documentation | [learn.microsoft.com/azure/foundry](https://learn.microsoft.com/azure/foundry) |
 | Foundry Toolkit for VS Code | [Install & Setup](https://code.visualstudio.com/docs/intelligentapps/overview#_install-and-setup) |
 | Azure AI Search | [learn.microsoft.com/azure/search](https://learn.microsoft.com/azure/search) |
 | GitHub Copilot | [docs.github.com/copilot](https://docs.github.com/copilot) |
