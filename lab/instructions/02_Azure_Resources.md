@@ -1,15 +1,15 @@
-﻿# Module II — Provisioning Azure Resources
+# Module II — Provisioning Azure Resources
 
 > [!NOTE]
 > **Duration:** ~15 minutes
-> In this module, you will set up all the Azure resources needed to power the Compliance Compass agent: AI Foundry (with models), Blob Storage (for documents), and Azure AI Search (for retrieval).
+> In this module, you will set up all the Azure resources needed to power the Compliance Compass agent: Microsoft Foundry (with models), Blob Storage (for documents), and Azure AI Search (for retrieval).
 
 ---
 
 ## Objectives
 
 - Create a Resource Group to organize all workshop resources
-- Deploy an AI Foundry hub and project with two models (GPT-4o for reasoning, text-embedding for search)
+- Deploy a Microsoft Foundry resource and project with two models (GPT-4o for reasoning, text-embedding for search)
 - Create a Storage Account with a Blob container and upload the compliance KB documents
 - Set up Azure AI Search (Free tier) and create a knowledge index from the blob data
 - Verify the search index with a test query
@@ -22,7 +22,8 @@
 graph TD
     RG[" Resource Group\ncompliance-agent-rg"]
 
-    subgraph AIF[" AI Foundry Hub: Compliance-Sentinel"]
+    subgraph AIF[" Microsoft Foundry: Compliance-Sentinel"]
+        PRJ[" Default Project"]
         GPT[" gpt-4o\nReasoning Model"]
         EMB[" compliance-embedding\ntext-embedding-ada-002"]
     end
@@ -59,7 +60,7 @@ A Resource Group is a logical container for all the Azure resources you will cre
 4. Fill in the details:
    - **Subscription:** Select your subscription (e.g., `Visual Studio Enterprise Subscription – MPN`)
    - **Resource group name:** `compliance-agent-rg`
-   - **Region:** Select a region that supports AI Foundry (e.g., `East US`, `East US 2`, or `Sweden Central`)
+   - **Region:** Select a region that supports Microsoft Foundry (e.g., `East US`, `East US 2`, or `Sweden Central`)
 
 5. Click **Review + create** → **Create**.
 
@@ -67,34 +68,42 @@ A Resource Group is a logical container for all the Azure resources you will cre
 
 ```bash
 # Set variables for the workshop (reused throughout this module)
+# Bash / Git Bash / macOS / Linux:
 RESOURCE_GROUP="compliance-agent-rg"
 LOCATION="eastus2"
+
+# Windows CMD alternative:
+# set RESOURCE_GROUP=compliance-agent-rg
+# set LOCATION=eastus2
 
 # Create the resource group
 az group create --name $RESOURCE_GROUP --location $LOCATION
 ```
 
 > [!TIP]
-> Use a consistent region for all resources (e.g., `East US 2`). Some AI models are only available in specific regions. On **Windows CMD**, replace `$VARIABLE` with `%VARIABLE%`; on **PowerShell**, use `$Variable` directly.
+> Use a consistent region for all resources (e.g., `East US 2`). Some AI models are only available in specific regions.
+> - **Windows CMD:** Use `set VARIABLE=value` to assign and `%VARIABLE%` to reference (e.g., `set RESOURCE_GROUP=compliance-agent-rg`, then `az group create --name %RESOURCE_GROUP% --location %LOCATION%`).
+> - **PowerShell:** Use `$Variable = "value"` directly.
+> - **Bash / Git Bash / macOS / Linux:** Use `VARIABLE="value"` and `$VARIABLE` as shown above.
 
 ---
 
-## Step 2: Create an AI Foundry Hub and Project
+## Step 2: Create a Microsoft Foundry Resource and Project
 
-AI Foundry is where you deploy the language model (GPT-4o) and embedding model that power the agent.
+Microsoft Foundry is a unified Azure service for AI operations. Creating a Foundry resource gives you a single resource that hosts models, agents, and projects. A **default project** is automatically created when you deploy your first model.
 
-### 2.1 Create the AI Foundry Hub
+### 2.1 Create the Foundry Resource
 
 #### Option A: Azure Portal
 
-1. In the Azure Portal, search for **Azure AI Foundry** and select it.
+1. In the Azure Portal, search for **Microsoft Foundry** and select it.
 
-2. Click **+ Create** → **Hub**.
+2. Click **+ Create**.
 
 3. Fill in the details:
    - **Subscription:** Your subscription
    - **Resource group:** `compliance-agent-rg`
-   - **Region:** Same region as your Resource Group
+   - **Region:** Same region as your Resource Group (e.g., `East US 2`)
    - **Name:** `Compliance-Sentinel`
 
 4. Click **Review + create** → **Create**.
@@ -104,39 +113,58 @@ AI Foundry is where you deploy the language model (GPT-4o) and embedding model t
 #### Option B: Azure CLI
 
 ```bash
-# Create the AI Foundry hub
-az ml workspace create \
-  --kind hub \
+FOUNDRY_NAME="Compliance-Sentinel"  # Must be globally unique
+
+# Create the Microsoft Foundry resource
+az cognitiveservices account create \
+  --name $FOUNDRY_NAME \
   --resource-group $RESOURCE_GROUP \
-  --name "Compliance-Sentinel" \
-  --location $LOCATION
+  --kind AIServices \
+  --sku S0 \
+  --location $LOCATION \
+  --allow-project-management
+
+# Set a custom subdomain (required for API access; must be globally unique)
+az cognitiveservices account update \
+  --name $FOUNDRY_NAME \
+  --resource-group $RESOURCE_GROUP \
+  --custom-domain $FOUNDRY_NAME
 ```
 
 ### 2.2 Create a Project
 
+A Foundry project organizes your work (agents, evaluations, files) within the Foundry resource.
+
 #### Option A: Azure Portal
 
-1. Inside the AI Foundry hub, click **+ New project**.
+1. Open the [Microsoft Foundry portal](https://ai.azure.com). Make sure the **New Foundry** toggle is set to **on**.
 
-2. Enter the project name: `Compliance-Sentinel` (or keep the default).
+2. Click on the project name in the upper-left corner, then select **Create new project**.
 
-3. Click **Create**.
+3. Enter the project name: `Compliance-Sentinel`.
+
+4. Under **Advanced options**, select your existing Resource group (`compliance-agent-rg`) and the Foundry resource you just created.
+
+5. Click **Create project**.
 
 #### Option B: Azure CLI
 
 ```bash
-# Create a project under the hub
-az ml workspace create \
-  --kind project \
+# Create a project under the Foundry resource
+az cognitiveservices account project create \
+  --name $FOUNDRY_NAME \
   --resource-group $RESOURCE_GROUP \
-  --name "Compliance-Sentinel" \
-  --hub-id /subscriptions/<subscription-id>/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.MachineLearningServices/workspaces/Compliance-Sentinel
+  --project-name "Compliance-Sentinel" \
+  --location $LOCATION
 ```
 
-> [!NOTE]
-> Replace `<subscription-id>` with your actual Azure subscription ID. You can retrieve it with:
+> [!TIP]
+> You can verify the project was created:
 > ```bash
-> az account show --query id -o tsv
+> az cognitiveservices account project show \
+>   --name $FOUNDRY_NAME \
+>   --resource-group $RESOURCE_GROUP \
+>   --project-name "Compliance-Sentinel"
 > ```
 
 ### 2.3 Deploy the GPT-4o Model
@@ -145,34 +173,38 @@ This model will be used for **reasoning** — it analyzes retrieved compliance d
 
 #### Option A: Azure Portal
 
-1. In the AI Foundry portal, navigate to **Models** in the left sidebar.
+1. In the [Microsoft Foundry portal](https://ai.azure.com), select your project.
 
-2. Click **+ Deploy model** → **Deploy base model**.
+2. In the left sidebar, select **Build** → **Models**.
 
-3. Search for **gpt-4o** and select it.
+3. Click **+ Deploy model** → **Deploy base model**.
 
-4. Configure:
+4. Search for **gpt-4o** and select it.
+
+5. Configure:
    - **Deployment name:** `gpt-4o`
    - **Model version:** Latest available
    - **Deployment type:** Standard
 
-5. Click **Deploy**.
+6. Click **Deploy**.
 
 #### Option B: Azure CLI
 
 ```bash
-# Deploy GPT-4o model
-az ml online-deployment create \
+# Deploy GPT-4o model (the Foundry resource IS the AI Services resource)
+az cognitiveservices account deployment create \
+  --name $FOUNDRY_NAME \
   --resource-group $RESOURCE_GROUP \
-  --workspace-name "Compliance-Sentinel" \
-  --endpoint-name "gpt-4o" \
-  --name "gpt-4o" \
-  --model "azureml://registries/azureml-meta/models/gpt-4o" \
-  --instance-type "Standard"
+  --deployment-name gpt-4o \
+  --model-name gpt-4o \
+  --model-version "2024-11-20" \
+  --model-format OpenAI \
+  --sku-capacity 1 \
+  --sku-name "Standard"
 ```
 
 > [!TIP]
-> Alternatively, you can deploy models through the [AI Foundry portal](https://ai.azure.com) under your project's **Deployments** section. The portal provides a visual interface for selecting model versions and configuring deployment parameters.
+> Alternatively, you can deploy models through the [Microsoft Foundry portal](https://ai.azure.com) under your project's **Models** section. The portal provides a visual interface for selecting model versions and configuring deployment parameters.
 
 ### 2.4 Deploy the Embedding Model
 
@@ -195,16 +227,18 @@ This model is used for **vectorizing the compliance documents** so Azure AI Sear
 
 ```bash
 # Deploy the embedding model
-az ml online-deployment create \
+az cognitiveservices account deployment create \
+  --name $FOUNDRY_NAME \
   --resource-group $RESOURCE_GROUP \
-  --workspace-name "Compliance-Sentinel" \
-  --endpoint-name "compliance-embedding" \
-  --name "compliance-embedding" \
-  --model "azureml://registries/azureml-meta/models/text-embedding-ada-002" \
-  --instance-type "Standard"
+  --deployment-name compliance-embedding \
+  --model-name text-embedding-ada-002 \
+  --model-version "2" \
+  --model-format OpenAI \
+  --sku-capacity 1 \
+  --sku-name "Standard"
 ```
 
-> After both models are deployed, verify they are listed under **Models** in the AI Foundry portal. You should see both `gpt-4o` (reasoning) and `compliance-embedding` (text-embedding-ada-002).
+> After both models are deployed, verify they are listed under **Models** in the Microsoft Foundry portal. You should see both `gpt-4o` (reasoning) and `compliance-embedding` (text-embedding-ada-002).
 
 > [!NOTE]
 > These two models will be used by the agent for document vectorization and reasoning respectively.
@@ -387,28 +421,28 @@ az search service show \
 
 Now link the AI Search to your Blob Storage to automatically index the compliance documents.
 
-1. Navigate to your AI Foundry project in the [AI Foundry portal](https://ai.azure.com).
+1. Open the [Azure Portal](https://portal.azure.com) and navigate to your **Azure AI Search** resource (`compliancesearch`).
 
-2. In the left sidebar, select **Knowledge** → **+ New knowledge base**.
+2. On the resource's **Overview** page, select the **Get started** tab.
 
-3. Fill in the **Basics**:
-   - **Name:** `compliance-kb` (or keep the auto-generated name)
-   - **Description:** `Compliance regulatory knowledge base for vendor risk, data protection, and cross-border operations`
+3. You will see several quick-start options. Click **Build** under the **Build your knowledge base** card.
 
-4. Under **Knowledge sources**, click **+ Create new**.
+4. This opens the **Import and vectorize data** wizard. Configure it as follows:
 
-5. In the **Create knowledge source** popup, you will see multiple options (Azure blob, Search index, SharePoint, etc.). Select **Azure blob (Indexed)**.
-
-6. Configure the Azure Blob source:
-   - **Name:** Keep the auto-generated name (or enter `compliance-kb-source`)
+   **Connect to your data:**
+   - **Data source:** Azure Blob Storage
    - **Subscription:** Your subscription
    - **Storage account:** `compliancekb`
    - **Blob container:** `kb-documents`
-   - **Content extraction Mode:** `Minimal`
 
-7. Scroll down and check **Enable text vectorization** if available, and select your embedding model deployment (`compliance-embedding`).
+5. Click **Next** to proceed to the **Vectorize your text** step.
 
-8. Click **Create**.
+6. Configure vectorization:
+   - **Kind:** Azure OpenAI
+   - Select your Foundry resource (`Compliance-Sentinel`)
+   - **Model deployment:** `compliance-embedding` (text-embedding-ada-002)
+
+7. Continue through the remaining steps (scheduling, index name) and click **Create** to finish.
 
 > [!NOTE]
 > The indexing process may take 2–5 minutes to complete. The system will:
@@ -463,7 +497,7 @@ Open your Resource Group (`compliance-agent-rg`) in the Azure Portal and verify 
 
 | Resource | Type | Purpose |
 |---|---|---|
-| `Compliance-Sentinel` | AI Foundry Hub | Hosts models and agent |
+| `Compliance-Sentinel` | Microsoft Foundry (AIServices) | Hosts models, projects, and agents |
 | `gpt-4o` | Model Deployment | Reasoning model |
 | `compliance-embedding` | Model Deployment | Embedding model for vectorization |
 | `compliancekb` | Storage Account | Stores compliance documents |
@@ -499,7 +533,7 @@ Expected output: `12` (the total number of compliance documents).
 Before moving to Module III, confirm:
 
 - [ ] Resource Group `compliance-agent-rg` created
-- [ ] AI Foundry hub `Compliance-Sentinel` created with a project
+- [ ] Microsoft Foundry resource `Compliance-Sentinel` created with a project
 - [ ] GPT-4o model deployed
 - [ ] Embedding model deployed
 - [ ] Storage Account created with `kb-documents` container
@@ -512,7 +546,7 @@ Before moving to Module III, confirm:
 
 ## Key Takeaways
 
-- **Azure AI Foundry** serves as the brain of the system — it provides both the reasoning model (GPT-4o) and the embedding model for vectorization.
+- **Microsoft Foundry** serves as the brain of the system — it provides both the reasoning model (GPT-4o) and the embedding model for vectorization.
 - **Azure Blob Storage** acts as the document repository — a simple, scalable way to store compliance policies.
 - **Azure AI Search** bridges the gap between raw documents and intelligent retrieval — it chunks, vectorizes, and indexes the content for fast semantic search.
 - The **Free tier** of Azure AI Search is sufficient for prototyping RAG agents with small document sets.

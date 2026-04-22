@@ -1,4 +1,4 @@
-﻿# Introduction
+# Introduction
 
 > [!NOTE]
 > This is a **90-minute** workshop that gives you hands-on experience building a **Compliance RAG Agent** using **Microsoft AI Foundry**, the **Foundry Toolkit for VS Code**, and **GitHub Copilot**. You will go from zero to a fully deployed compliance assistant with a web UI.
@@ -9,7 +9,7 @@
 
 By the end of this workshop, you will be able to:
 
-- **Provision Azure resources** (AI Foundry, Blob Storage, Azure AI Search) required for a RAG agent.
+- **Provision Azure resources** (Microsoft Foundry, Blob Storage, Azure AI Search) required for a RAG agent.
 - **Upload and index compliance documents** into Azure AI Search from Azure Blob Storage.
 - **Design and prototype an agent** in Foundry Toolkit for VS Code Agent Builder with Azure AI Search as a grounding tool.
 - **Export agent code** and debug real-world runtime errors using GitHub Copilot.
@@ -24,7 +24,7 @@ By the end of this workshop, you will be able to:
 ```mermaid
 flowchart LR
     U[" User Query"] -->|"1. Submit"| UI[" Streamlit Web UI\napp_ui.py"]
-    UI -->|"2. Query"| A[" Azure AI Foundry\nAgent (GPT-4o)"]
+    UI -->|"2. Query"| A[" Microsoft Foundry\nAgent (GPT-4o)"]
     A -->|"3. Search"| S[" Azure AI Search\nRAG Retrieval"]
     S -->|"4. Retrieve"| B[" Blob Storage\nKB Documents"]
     B -.->|"5. Chunks"| S
@@ -73,7 +73,7 @@ You will build **Compliance Compass**, an intelligent compliance RAG agent that:
 | Module | Title | What You Will Do | Duration |
 |---|---|---|---|
 | **I** | [Prerequisites and Environment Setup](./01_Prerequisites.md) | Install tools, authenticate with Azure, configure VS Code extensions | 10 min |
-| **II** | [Provisioning Azure Resources](./02_Azure_Resources.md) | Create AI Foundry hub, deploy models, set up Blob Storage and AI Search | 15 min |
+| **II** | [Provisioning Azure Resources](./02_Azure_Resources.md) | Create Microsoft Foundry resource, deploy models, set up Blob Storage and AI Search | 15 min |
 | **III** | [Designing the Agent in Foundry Toolkit for VS Code](./03_Agent_Design.md) | Build the compliance agent visually with instructions and Azure AI Search tool | 10 min |
 | **IV** | [Exporting Code and Debugging with Copilot](./04_Code_Export_Debug.md) | Export to Python, encounter a real Azure SDK error, debug with Copilot | 15 min |
 | **V** | [Adding Interactive Input](./05_Interactive_Input.md) | Transform hardcoded queries into an interactive CLI with Copilot | 10 min |

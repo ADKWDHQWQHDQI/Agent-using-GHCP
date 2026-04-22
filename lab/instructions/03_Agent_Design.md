@@ -41,7 +41,7 @@
    - `gpt-4o`
 
 > [!TIP]
-> If you do not see your models, click the **+** button next to **Models** to add a model from your Foundry Hub. Select the Azure AI Foundry connection and choose the models you deployed in Module II.
+> If you do not see your models, click the **+** button next to **Models** to add a model from your Foundry resource. Select the Microsoft Foundry connection and choose the models you deployed in Module II.
 
 ---
 
@@ -247,7 +247,7 @@ Once you are satisfied with the agent's responses:
 
 1. Click the **Save to Foundry** button at the top-right of the Agent Builder.
 
-2. The agent configuration (name, model, instructions, tools) will be saved to your AI Foundry project.
+2. The agent configuration (name, model, instructions, tools) will be saved to your Microsoft Foundry project.
 
 3. After saving, you will see the agent listed under **Prompt Agents** in the Foundry Toolkit for VS Code panel.
 

@@ -22,7 +22,8 @@ This workshop requires the following Azure resources. These are provisioned as p
 
 | Resource | Name Used in Lab | Tier |
 |---|---|---|
-| **Azure AI Foundry Hub + Project** | `Compliance-Sentinel` | Standard |
+| **Microsoft Foundry Resource** | `Compliance-Sentinel` | Standard (AIServices) |
+| **Foundry Project** | `Compliance-Sentinel` (default project) | — |
 | **GPT-4o model deployment** | `gpt-4o` | Standard (pay-per-use) |
 | **Embedding model deployment** | `compliance-embedding` (text-embedding-ada-002) | Standard (pay-per-use) |
 | **Azure AI Search** | `compliancesearch` | **Free tier** |
@@ -124,7 +125,7 @@ After installation, you should see:
 
 The workshop requires an active Azure subscription with permissions to create resources.
 
-1. Open a terminal in VS Code (`Ctrl+`` ` or **Terminal** → **New Terminal**).
+1. Open a terminal in VS Code (`` Ctrl+` `` or **Terminal** → **New Terminal**).
 
 2. Sign in to Azure:
 
@@ -233,6 +234,10 @@ The workshop requires an active Azure subscription with permissions to create re
 The repository includes 12 compliance documents in the `kb_markdown/` folder. Verify they are present:
 
 ```bash
+# Windows CMD
+dir kb_markdown\
+
+# PowerShell / Git Bash / macOS / Linux
 ls kb_markdown/
 ```
 
@@ -261,7 +266,7 @@ These documents will be uploaded to Azure Blob Storage in Module II.
 
 Before moving to Module II, confirm:
 
-- [ ] Azure resources accessible (AI Foundry, AI Search, Storage Account)
+- [ ] Azure resources accessible (Microsoft Foundry, AI Search, Storage Account)
 - [ ] Python 3.10+ installed and verified
 - [ ] Azure CLI installed and authenticated (`az login`)
 - [ ] VS Code installed with all required extensions
@@ -276,7 +281,7 @@ Before moving to Module II, confirm:
 
 - A properly configured environment is essential before building AI agents.
 - Azure CLI authentication enables programmatic access to Azure resources from your local machine.
-- The Foundry Toolkit for VS Code extension bridges VS Code with Azure AI Foundry, allowing you to design and manage agents visually.
+- The Foundry Toolkit for VS Code extension bridges VS Code with Microsoft Foundry, allowing you to design and manage agents visually.
 - GitHub Copilot Agent mode will be your primary tool for coding, debugging, and extending the compliance agent.
 
 ---
