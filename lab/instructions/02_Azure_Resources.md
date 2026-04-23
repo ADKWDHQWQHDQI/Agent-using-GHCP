@@ -341,7 +341,7 @@ Azure AI Search indexes the uploaded documents so the agent can retrieve relevan
 ### 4.1 Create the Azure AI Search Resource
 
 #### Option A: Azure Portal
-
+ 
 1. In the Azure Portal, search for **Azure AI Search** and select it.
 
 2. Click **+ Create**.
@@ -414,43 +414,6 @@ Now link the AI Search to your Blob Storage to automatically index the complianc
 > - Generate vector embeddings using the embedding model
 > - Create a searchable index
 
-### 4.3 Verify the Search Index
-
-1. Navigate back to your **Azure AI Search** resource in the Azure Portal.
-
-2. Click on **Indexes** in the left sidebar.
-
-3. You should see a new index (e.g., `knowledgesource-1773330398864-index`).
-
-4. Click on the index to open it. Verify the statistics:
-   - **Documents:** ~81 (chunks from 12 documents)
-   - **Total storage:** ~3.5 MB
-   - **Vector index quota usage:** ~743 KB
-
-### 4.4 Test the Retrieval
-
-1. In the index page, click the **Search explorer** tab.
-
-2. In the search box, enter a test query:
-
-   ```
-   RBI data localization payment data India
-   ```
-
-3. Click **Search**.
-
-4. Verify that the results return relevant chunks from `RBI_Data_Localization_2018_Guidelines.md`.
-
-> [!TIP]
-> Try additional test queries:
-> - `GDPR cross-border transfer safeguards SCCs`
-> - `vendor onboarding risk assessment`
-> - `insider trading compliance SEBI`
->
-> Each should return relevant document chunks from the Knowledge Base.
-
----
-
 ## Step 5: Verify All Resources
 
 ### Option A: Azure Portal
@@ -502,7 +465,6 @@ Before moving to Module III, confirm:
 - [ ] All 12 Markdown documents uploaded to the container
 - [ ] Azure AI Search resource created (Free tier)
 - [ ] Knowledge index created and populated (~81 documents)
-- [ ] Test query in Search Explorer returns relevant results
 
 ---
 

@@ -18,3 +18,6 @@ Thumbs.db
 
 # Explore scripts (development only)
 explore/
+
+# Agent directory (excluded from repo)
+agent/
