@@ -131,41 +131,12 @@ az cognitiveservices account update \
   --custom-domain $FOUNDRY_NAME
 ```
 
-### 2.2 Create a Project
+### 2.2 Default Project
 
-A Foundry project organizes your work (agents, evaluations, files) within the Foundry resource.
+When you create a Microsoft Foundry resource, a **default project** is automatically provisioned for you — no manual project creation is required.
 
-#### Option A: Azure Portal
-
-1. Open the [Microsoft Foundry portal](https://ai.azure.com). Make sure the **New Foundry** toggle is set to **on**.
-
-2. Click on the project name in the upper-left corner, then select **Create new project**.
-
-3. Enter the project name: `Compliance-Sentinel`.
-
-4. Under **Advanced options**, select your existing Resource group (`compliance-agent-rg`) and the Foundry resource you just created.
-
-5. Click **Create project**.
-
-#### Option B: Azure CLI
-
-```bash
-# Create a project under the Foundry resource
-az cognitiveservices account project create \
-  --name $FOUNDRY_NAME \
-  --resource-group $RESOURCE_GROUP \
-  --project-name "Compliance-Sentinel" \
-  --location $LOCATION
-```
-
-> [!TIP]
-> You can verify the project was created:
-> ```bash
-> az cognitiveservices account project show \
->   --name $FOUNDRY_NAME \
->   --resource-group $RESOURCE_GROUP \
->   --project-name "Compliance-Sentinel"
-> ```
+> [!NOTE]
+> After the Foundry resource deployment completes, open the [Microsoft Foundry portal](https://ai.azure.com) and you will see the default project already available under your resource. You can rename it if needed, but for this workshop we will use it as-is.
 
 ### 2.3 Deploy the GPT-4o Model
 
@@ -175,18 +146,16 @@ This model will be used for **reasoning** — it analyzes retrieved compliance d
 
 1. In the [Microsoft Foundry portal](https://ai.azure.com), select your project.
 
-2. In the left sidebar, select **Build** → **Models**.
+2. In the left sidebar, select **Models + Endpoints**, then click **Deploy base model**.
 
-3. Click **+ Deploy model** → **Deploy base model**.
+3. Search for **gpt-4o** and select it.
 
-4. Search for **gpt-4o** and select it.
-
-5. Configure:
+4. Configure:
    - **Deployment name:** `gpt-4o`
    - **Model version:** Latest available
    - **Deployment type:** Standard
 
-6. Click **Deploy**.
+5. Click **Deploy**.
 
 #### Option B: Azure CLI
 
@@ -212,9 +181,9 @@ This model is used for **vectorizing the compliance documents** so Azure AI Sear
 
 #### Option A: Azure Portal
 
-1. Back in the **Models** section, click **+ Deploy model** → **Deploy base model**.
+1. Back in the **Models + Endpoints** section, click **Deploy base model**.
 
-2. Search for **text-embedding-ada-002** (or **text-embedding-3-small**).
+2. Search for **text-embedding-ada-002** (or **text-embedding-3-small**) and select it.
 
 3. Configure:
    - **Deployment name:** `compliance-embedding`
@@ -251,7 +220,7 @@ az cognitiveservices account deployment create \
 
 #### Option A: Azure Portal
 
-1. In the Azure Portal, search for **Storage accounts** and select it.
+1. In the Azure Portal, type **blob storage** in the top search box and select **Storage accounts** from the results.
 
 2. Click **+ Create**.
 
@@ -264,6 +233,8 @@ az cognitiveservices account deployment create \
    - **Redundancy:** LRS (Locally Redundant Storage)
 
 4. Click **Review + create** → **Create**.
+
+5. Once deployment is complete, click **Go to resource** to open the storage account.
 
 #### Option B: Azure CLI
 
@@ -278,65 +249,56 @@ az storage account create \
   --kind StorageV2
 ```
 
-### 3.2 Create a Blob Container
+### 3.2 Upload the Knowledge Base Documents and Create a Container
+
+The container (`kb-documents`) is created inline during the upload — no separate container creation step is needed in the portal.
 
 #### Option A: Azure Portal
 
-1. Open the newly created storage account.
+1. In the storage account (`compliancekb`), click **Upload** from the top toolbar on the Overview page.
 
-2. In the left sidebar, select **Containers** (under **Data storage**).
+2. In the upload panel that opens on the right:
 
-3. Click **+ Container**.
+   - Click **Browse for files**, navigate to the `kb_markdown/` folder in your workshop repository, and select **all 12 Markdown files**:
+     - `DPDP_Act_India_2023.md`
+     - `EU_China_Data_Flows_2024.md`
+     - `Export_Control_US_EU_India_2025.md`
+     - `GDPR_Article_44_Transfers.md`
+     - `GDPR_Schrems_II_Post_2020.md`
+     - `Incident_Response_Best_Practices.md`
+     - `Mitigation_Templates_DPA.md`
+     - `RBI_Cross_Border_Transactions_Circular_2023.md`
+     - `RBI_Data_Localization_2018_Guidelines.md`
+     - `RBI_Vendor_Onboarding_Risk_2024.md`
+     - `Risk_Scoring_Framework.md`
+     - `SEBI_Insider_Trading_Policy.md`
 
-4. Enter the container name: `kb-documents`.
+3. Under **Select an existing container**, click **Create new**.
 
-5. Set **Public access level** to **Private (no anonymous access)**.
+4. Enter the container name: `kb-documents`, then confirm.
 
-6. Click **Create**.
+5. Click **Upload**.
+
+> [!NOTE]
+> The container `kb-documents` is created automatically as part of this step. Once the upload completes, all 12 files will be inside the new container.
 
 #### Option B: Azure CLI
 
 ```bash
+STORAGE_ACCOUNT="compliancekb"  # Must match the name used in Step 3.1
+
+# Create the blob container
 az storage container create \
   --name kb-documents \
   --account-name $STORAGE_ACCOUNT \
   --auth-mode login
-```
 
-### 3.3 Upload the Knowledge Base Documents
-
-#### Option A: Azure Portal
-
-1. Open the `kb-documents` container.
-
-2. Click **Upload**.
-
-3. Click **Browse for files** and navigate to the `kb_markdown/` folder in your workshop repository.
-
-4. Select **all 12 Markdown files**:
-   - `DPDP_Act_India_2023.md`
-   - `EU_China_Data_Flows_2024.md`
-   - `Export_Control_US_EU_India_2025.md`
-   - `GDPR_Article_44_Transfers.md`
-   - `GDPR_Schrems_II_Post_2020.md`
-   - `Incident_Response_Best_Practices.md`
-   - `Mitigation_Templates_DPA.md`
-   - `RBI_Cross_Border_Transactions_Circular_2023.md`
-   - `RBI_Data_Localization_2018_Guidelines.md`
-   - `RBI_Vendor_Onboarding_Risk_2024.md`
-   - `Risk_Scoring_Framework.md`
-   - `SEBI_Insider_Trading_Policy.md`
-
-5. Click **Upload**.
-
-#### Option B: Azure CLI
-
-```bash
 # Upload all 12 KB documents from the local kb_markdown/ folder
 az storage blob upload-batch \
   --account-name $STORAGE_ACCOUNT \
   --destination kb-documents \
   --source ./kb_markdown/ \
+  --pattern "*.md" \
   --auth-mode login
 ```
 
