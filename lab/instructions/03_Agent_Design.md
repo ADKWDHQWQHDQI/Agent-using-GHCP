@@ -2,7 +2,7 @@
 
 > [!NOTE]
 > **Duration:** ~10 minutes
-> In this module, you will use the Foundry Toolkit for VS Code extension in VS Code to design and prototype the Compliance Compass agent. You will configure the agent's name, model, instructions, and connect it to Azure AI Search for RAG retrieval. Finally, you will test the agent in the Playground and save it to Foundry.
+> In this module, you will use the Foundry Toolkit for VS Code extension in VS Code to design and prototype the Compliance Compass agent. You will configure the agent's name, model, instructions, and connect it to Azure AI Search for RAG retrieval. Finally, you will test the agent in the Playground and save it to Microsoft Foundry.
 
 ---
 
